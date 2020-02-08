@@ -40,4 +40,17 @@ def get_input_args():
     """
     # Replace None with parser.parse_args() parsed argument collection that 
     # you created with this function 
-    return None
+    # Creates Argument Parser object named parser
+    parser = argparse.ArgumentParser()
+
+    # Argument 1: that's a path to a folder
+    parser.add_argument('--dir', type=str, default='pet_images/',
+                        help='path to the folder of pet images')
+
+    parser.add_argument('--arch', type=str, default='resnet18',
+                        help='Classifier is one of: resnet18, alexnet, vgg16')
+
+    parser.add_argument('--dogfile', type=str, default='dognames.txt',
+                        help='File containing list of valid dognames.')
+
+    return parser.parse_args()
