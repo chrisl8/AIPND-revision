@@ -3,8 +3,8 @@
 # */AIPND-revision/intropyproject-classify-pet-images/check_images.py
 #
 # TODO 0: Add your information below for Programmer & Date Created.                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                  
+# PROGRAMMER: Christen Lofland
+# DATE CREATED: February 8, 2020
 # REVISED DATE: 
 # PURPOSE: Classifies pet images using a pretrained CNN model, compares these
 #          classifications to the true identity of the pets in the images, and
@@ -114,7 +114,8 @@ def main():
     # Prints summary results, incorrect classifications of dogs (if requested)
     # and incorrectly classified breeds (if requested)
     print_results(results, results_stats, None, True, True)
-    
+
+    sleep(5)
     # TODO 0: Measure total program runtime by collecting end time
     end_time = time()
     
