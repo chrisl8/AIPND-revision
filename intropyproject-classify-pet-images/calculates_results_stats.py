@@ -67,7 +67,58 @@ def calculates_results_stats(results_dic):
                      and the value is the statistic's value. See comments above
                      and the classroom Item XX Calculating Results for details
                      on how to calculate the counts and statistics.
-    """        
+    """
+
+    # [2] - classifier could guess breed
+    # [3] - file_is_a_dog
+    # [4] - model_tinks_it_is_a_dog
     # Replace None with the results_stats_dic dictionary that you created with 
-    # this function 
-    return None
+    # this function
+    results_stats_dic = {}
+
+    # n_images - number of images
+    results_stats_dic['n_images'] = len(results_dic)
+
+    # n_dogs_img - number of dog images
+    results_stats_dic["n_dogs_img"] = len(
+        list(filter(lambda x: x[3], results_dic.values()))
+    )
+
+    # n_notdogs_img - number of NON-dog images
+    results_stats_dic["n_notdogs_img"] = (
+        results_stats_dic["n_images"] - results_stats_dic["n_dogs_img"]
+    )
+
+    # n_match - number of matches between pet & classifier labels
+    results_stats_dic["n_match"] = len(
+        list(filter(lambda x: x[3] == x[4], results_dic.values()))
+    )
+
+    # n_correct_dogs - number of correctly classified dog images
+    results_stats_dic["n_correct_dogs"] = len(
+        list(filter(lambda x: x[3] and x[4], results_dic.values()))
+    )
+
+    # n_correct_notdogs - number of correctly classified NON-dog images
+    results_stats_dic["n_correct_notdogs"] = len(
+        list(filter(lambda x: not x[3] and not x[4], results_dic.values()))
+    )
+
+    # n_correct_breed - number of correctly classified dog breeds
+    results_stats_dic["n_correct_breed"] = len(
+        list(filter(lambda x: x[2] and x[3], results_dic.values()))
+    )
+
+    # pct_match - percentage of correct matches
+    results_stats_dic["pct_match"] = results_stats_dic["n_match"] / results_stats_dic["n_images"] * 100
+
+    # pct_correct_dogs - percentage of correctly classified dogs
+    results_stats_dic["pct_correct_dogs"] = results_stats_dic["n_correct_dogs"] / results_stats_dic["n_dogs_img"] * 100
+
+    # pct_correct_breed - percentage of correctly classified dog breeds
+    results_stats_dic["pct_correct_breed"] = results_stats_dic["n_correct_breed"] / results_stats_dic["n_dogs_img"] * 100
+
+    # pct_correct_notdogs - percentage of correctly classified NON-dogs
+    results_stats_dic["pct_correct_notdogs"] = results_stats_dic["n_correct_notdogs"] / results_stats_dic["n_notdogs_img"] * 100
+
+    return results_stats_dic

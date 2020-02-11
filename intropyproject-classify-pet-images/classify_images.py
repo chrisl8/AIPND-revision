@@ -53,7 +53,7 @@ def classify_images(images_dir, results_dic, model):
       images_dir - The (full) path to the folder of images that are to be
                    classified by the classifier function (string)
       results_dic - Results Dictionary with 'key' as image filename and 'value'
-                    as a List. Where the list will contain the following items: 
+                    as a List. Where the list will coclassify_images.pyntain the following items:
                   index 0 = pet image label (string)
                 --- where index 1 & index 2 are added by this function ---
                   NEW - index 1 = classifier label (string)
@@ -65,4 +65,9 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
-    None 
+    for key in results_dic:
+        ls = results_dic[key]
+        ls.append(classifier(images_dir + key, model))
+        ls.append(-1 != ls[1].lower().find(ls[0].lower()))
+        results_dic[key] = ls
+    return results_dic
