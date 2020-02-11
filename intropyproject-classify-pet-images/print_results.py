@@ -61,6 +61,32 @@ def print_results(results_dic, results_stats_dic, model,
                               False doesn't print anything(default) (bool) 
     Returns:
            None - simply printing results.
-    """    
+    """
+
+    print("\n\n")
+    print("Using model:" + model)
+    print("Number of images: " + str(results_stats_dic["n_images"]))
+    print("Number of dog images: " + str(results_stats_dic["n_dogs_img"]))
+    print("Number of not-dog images: " + str(results_stats_dic["n_notdogs_img"]))
+
+    for key in results_stats_dic:
+        if 0 == key.find("pct"):
+            print(
+                key.replace("pct_", "").replace("_", " ")
+                + " : "
+                + str(results_stats_dic[key])
+            )
+    if print_incorrect_dogs:
+        for key in results_dic:
+            ls = results_dic[key]
+            if ls[3] != ls[4]:
+                print("Misclassified dog: {}: {}".format(ls[0], ls[1]))
+
+    if print_incorrect_breed:
+        for key in results_dic:
+            ls = results_dic[key]
+            if ls[3] + ls[4] == 2 and ls[2] == False:
+                print("Misclassified breed: {}: {}".format(ls[0], ls[1]))
+
     None
                 
