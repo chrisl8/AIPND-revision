@@ -40,15 +40,6 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
-    # Replace None with the results_dic dictionary that you created with this
-    # function
-    # Retrieve the filenames from folder pet_images/
-    filename_list = listdir(image_dir)
-
-    # Print 10 of the filenames from folder pet_images/
-    # print("\nPrints 10 filenames from folder {}".format(image_dir))
-    # for idx in range(0, len(filename_list)):
-        # print("{:2d} file: {:>25}".format(idx + 1, filename_list[idx]))
 
     # Creates empty dictionary named results_dic
     results_dic = dict()
@@ -60,7 +51,10 @@ def get_pet_labels(image_dir):
     # Adds new key-value pairs to dictionary ONLY when key doesn't already exist. This dictionary's value is
     # a List that contains only one item - the pet image label
     filenames = listdir(image_dir)
-    # print(filenames)
+
+    # Remove dot files. Nasty Macs
+    filenames = list(filter(lambda x: x[0] != '.', filenames))
+
     pet_labels = []
 
     for idx in range(0, len(filenames)):
