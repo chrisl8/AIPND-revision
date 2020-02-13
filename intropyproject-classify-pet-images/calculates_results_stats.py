@@ -91,7 +91,7 @@ def calculates_results_stats(results_dic):
 
     # n_match - number of matches between pet & classifier labels
     results_stats_dic["n_match"] = len(
-        list(filter(lambda x: x[3] == x[4], results_dic.values()))
+        list(filter(lambda x: x[2], results_dic.values()))
     )
 
     # n_correct_dogs - number of correctly classified dog images

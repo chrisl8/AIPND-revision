@@ -88,5 +88,7 @@ def print_results(results_dic, results_stats_dic, model,
             if ls[3] + ls[4] == 2 and ls[2] == False:
                 print("Misclassified breed: {}: {}".format(ls[0], ls[1]))
 
+    print("\nPercent Match: {}%".format(results_stats_dic["pct_match"]))
+
     None
                 
