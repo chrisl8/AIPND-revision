@@ -55,10 +55,6 @@ def get_pet_labels(image_dir):
     # Remove dot files. Nasty Macs
     filenames = list(filter(lambda x: x[0] != '.', filenames))
 
-    # Remove file extensions
-    filenames = list(map(path.splitext, filenames))
-    filenames = [x[0] for x in filenames]
-
     pet_labels = []
 
     for idx in range(0, len(filenames)):
@@ -69,8 +65,11 @@ def get_pet_labels(image_dir):
         # Sets string to lower case letters
         low_pet_image = pet_image.lower()
 
+        # Strip off extension
+        pet_image_without_extnsion = path.splitext(low_pet_image)[0]
+
         # Splits lower case string by _ to break into words
-        word_list_pet_image = low_pet_image.split("_")
+        word_list_pet_image = pet_image_without_extnsion.split("_")
 
         # Create pet_name starting as empty string
         pet_name = ""
